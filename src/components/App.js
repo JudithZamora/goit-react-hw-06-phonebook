@@ -29,9 +29,9 @@ const App = () => {
     dispatch(addContact(newContact));
   };
 
-  const handleDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
+  const filteredContacts = contacts.filter((contact) =>
+  contact.name.toLowerCase().includes(filter.toLowerCase())
+);
 
   return (
     <div>
@@ -39,10 +39,7 @@ const App = () => {
       <ContactForm addContact={handleAddContact} />
       <h2>Contacts</h2>
       <Filter filter={filter} setFilter={(value) => dispatch(setFilter(value))} />
-      <ContactList
-        contacts={contacts}
-        deleteContact={handleDeleteContact}
-      />
+      <ContactList contacts={filteredContacts} deleteContact={deleteContact} />
     </div>
   );
 };
